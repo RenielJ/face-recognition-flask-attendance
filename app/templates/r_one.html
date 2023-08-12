@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>James Bambao - Resume</title>
+  {% include "header.html" %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: whitesmoke;
+    }
+    .resume-section {
+      margin-bottom: 30px;
+    }
+    .profile-picture {
+      max-width: 150px;
+      border-radius: 50%;
+      margin: 0 auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+    {% include "navbar.html" %}
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-8 offset-md-2">
+        <div class="text-center mb-4">
+          <img src="{{ url_for('static', filename='img/bambao.jpg') }}" alt="Profile Picture" class="profile-picture">
+          <h1>James Reniel Bambao</h1>
+          <p>Researcher</p>
+        </div>
+        
+        <!-- Summary Section -->
+        <div class="resume-section">
+          <h2>Objectives</h2>
+          <p>To increase technology awareness and engagement through a comprehensive industrial community.</p>
+          <p>To improve manufacturing efficiency and quality control processes to enhance product reliability and customer satisfaction</p>
+        </div>
+
+
+        <!-- Skills Section -->
+        <div class="resume-section">
+          <h2>Skills</h2>
+          <ul>
+            <li>Electronic Repairing</li>
+            <li>Wiring Installation</li>
+            <li>Web design (HTML, CSS, and Java Script)</li>
+            <li>Data Analytic (Excel, MySQL)</li>
+          </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="resume-section">
+          <h2>Contact</h2>
+          <p>
+            <strong>Email:</strong> jamesreniel.bambao@tup.edu.ph
+            <br>
+            <strong>Phone:</strong> 09289057723
+            <br>
+            <strong>LinkedIn:</strong> linkedin.com/in/james-reniel-bambao-b0a736276
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include "footer.html" %}
+</body>
+</html>

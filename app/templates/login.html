@@ -12,9 +12,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    {% include "header.html" %}
+    
     <title>FaceSense&TempTrack - {{ title }}</title>
+        <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" type="text/css">
 
+    <!-- Include Bootstrap JavaScript bundle (includes both Bootstrap JS and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"> </script>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"> </script>
+    
     <style>
         body {
             background-image: url("{{ url_for('static', filename='img/LOGIN.jpg') }}");
@@ -76,24 +87,17 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+                                <h5 class="modal-title" id="forgotPasswordModalLabel">Need an Account</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>If you need assistance with password recovery, please use the form below to send us a message:</p>
-                                <form>
-                                    <label for="message">Message:</label>
-                                    <textarea name="message" rows="5" required></textarea>
-                                    <button type="submit" class="btn btn-primary">Send Message</button>
-                                </form>
+                                <p>If you have questions about creating an account, you may contact us <a href="#" target="_blank"> click here! </a> </p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-
 
                 <!-- Modal for Need an Account -->
                 <div class="modal fade" id="needAccountModal" tabindex="-1" role="dialog" aria-labelledby="needAccountModalLabel" aria-hidden="true">
@@ -106,12 +110,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <p>If you have questions about creating an account, please use the form below to send us a message:</p>
-                                <form>
-                                    <label for="message">Message:</label>
-                                    <textarea name="message" rows="5" required></textarea>
-                                    <button type="submit" class="btn btn-primary">Send Message</button>
-                                </form>
+                                <p>If you have questions about creating an account, you may contact us <a href="#" target="_blank"> click here! </a> </p>
                             </div>
                         </div>
                     </div>
