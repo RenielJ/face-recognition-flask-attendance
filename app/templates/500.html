@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include "header.html" %}
+    <title> {{ title }}</title>
+</head>
+<body>
+    <div id="layoutError">
+        <div id="layoutError_content">
+            <main>
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="text-center mt-4">
+                                <h1 class="display-1">500</h1>
+                                <p class="lead">Internal Server Error</p>
+                                <a href="{{ url_for('auth.logout') }}">
+                                    <i class="fas fa-arrow-left me-1"></i>
+                                    Return to Login System
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    {% include "footer.html" %}
+    </div>
+</body>
+</html>

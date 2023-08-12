@@ -1,0 +1,4 @@
+<!-- home.html -->
+<h1>Welcome, {{ session['username'] }}!</h1>
+
+<a href="{{ url_for('auth.logout') }}">Logout</a>
