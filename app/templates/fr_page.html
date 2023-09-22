@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Face Attendance</title>
+    {% include "header.html" %}
+    
+    <style> 
+    body{
+        background:whitesmoke ;
+    }
+    
+    </style>
+</head>
+<body>
+
+    {% include "navbar.html" %}
+
+    <br>
+
+    <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            <h3> Facial Attendance </h3>
+          </div>
+
+        <div class="row">
+        <div class="col">
+            <img src="{{ url_for('face_temp.video_feed') }}" width="80%" class="img-thumbnail">
+        </div>
+
+        </div>
+        </div>
+
+
+        <br>
+        <div class="row">  
+            <div class="col">
+                <br>
+                <a href="{{ url_for('face_temp.index') }}" type="button" class="btn btn-primary btn-lg"><b>Student data</b></a>
+            </div>
+        </div>
+    </div>
+            <br>
+
+
+          <section class="container" style="background-color: whitesmoke;">
+            <br><br>
+            <div class="card text-center">
+                <div class="container">
+    
+                    <h3 style="padding-top: 20px; text-align: center;">Today Scan</h3>
+    
+                    <hr>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                            <a href="{{ url_for('face_temp.download_data') }}" type="button" class="btn btn-success btn-lg">
+                                <b>Download Excel Files</b>
+                            </a>
+                            </div>
+                            <div class="col">
+    <button id="deleteAllButton" type="button" class="btn btn-danger btn-lg">
+                                <b>Delete All Data</b>
+                            </button>
+    
+                    </div>
+                    
+
+<!-- Delete Data Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                             
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this entry?
+                    </div>
+                    <div class="modal-footer">
+                        <button id="confirmDeleteButton" type="button" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                    <br><br><br><br>
+    
+                    <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Student ID</th>
+                        <th>Course</th>
+                        <th>Time</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="scandata">
+    
+                    </tbody>
+                </table>
+                <br><br><br>
+                        </div>
+    <button id="sortButton" class="btn btn-secondary"><b> Sort </b></button>
+    
+                </div>
+            </div>
+            <br><br><br>
+        </section>
+
+        
+
+        
+        
+
+<script type="text/javascript">
+            $(document).ready(function () {
+            // Other existing code...
+
+            // Add a click event listener to the sorting button
+            $('#sortButton').click(function () {
+                sortTable();
+            });
+
+            // Function to sort the table rows by name
+            function sortTable() {
+                var tbody = $('#scandata');
+                var rows = tbody.find('tr').get();
+                rows.sort(function (a, b) {
+                    var nameA = $(a).find('td:first').text().toUpperCase();
+                    var nameB = $(b).find('td:first').text().toUpperCase();
+                    return nameA.localeCompare(nameB);
+                });
+
+                // Re-append sorted rows to the table
+                $.each(rows, function (index, row) {
+                    tbody.append(row);
+                });
+            }
+        })
+    $(document).ready(function () {
+        let lastcnt = 0;
+        let cnt;
+        chkNewScan();
+
+        $('#deleteAllButton').click(function () {
+            deleteAllData();
+        });
+
+        function chkNewScan() {
+            countTodayScan();
+            setTimeout(chkNewScan, 1000);
+        }
+
+        function countTodayScan() {
+            $.ajax({
+                url: '/faceSense&tempTrack/countTodayScan',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    cnt = data.rowcount;
+                    if (cnt > lastcnt) {
+                        reloadTable();
+                    }
+
+                    lastcnt = cnt;
+                },
+                error: function (result) {
+                    console.log('no result!')
+                }
+            })
+        }
+
+        function reloadTable() {
+            $.ajax({
+                url: '/faceSense&tempTrack/loadData',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    var tr = $("#scandata");
+                    tr.empty();
+
+                    $.each(response, function (index, item) {
+                        if (item.length > 0) {
+                            for (let i = 0; i < item.length; i++) {
+                                tr.append('<tr>' +
+                                    '<td>' + item[i][1] + '</td>' +
+                                    '<td>' + item[i][2] + '</td>' +
+                                    '<td>' + item[i][3] + '</td>' +
+                                    '<td>' + item[i][4] + '</td>' +
+                                    '<td><button class="btn btn-danger btn-sm deleteButton" data-id="' + item[i][0] + '">Delete</button></td>' +
+                                    '</tr>');
+                            }
+                        }
+                    });
+
+                    $('.deleteButton').click(function () {
+                        var id = $(this).data('id');
+                        deleteDatdeleteAllData(id);
+                    });
+                },
+                error: function (result) {
+                    console.log('no result!')
+                }
+            });
+        }
+
+        function deleteDatdeleteAllData(id) {
+            $.ajax({
+                url: '/faceSense&tempTrack/delete_data',
+                type: 'POST',
+                data: {id: id},
+                success: function (response) {
+                    console.log(response);
+                    reloadTable();
+                },
+                error: function (result) {
+                    console.log('Error deleting data');
+                }
+            });
+        }
+
+        function deleteAllData(id) {
+            $('#deleteModal').modal('show'); // Show the modal
+
+            $('#confirmDeleteButton').off('click'); // Remove any previously attached click event handlers
+
+            $('#confirmDeleteButton').click(function () {
+                $.ajax({
+                    url: '/faceSense&tempTrack/delete_all_data',
+                    type: 'POST',
+                    data: {id: id},
+                    success: function (response) {
+                        console.log(response);
+                        $('#deleteModal').modal('hide'); // Hide the modal
+                        reloadTable();
+                    },
+                    error: function (result) {
+                        console.log('Error deleting data');
+                    }
+                });
+            });
+        }
+    });
+
+    
+</script>
+
+{% include "footer.html" %}
+
+</body>
+</html>

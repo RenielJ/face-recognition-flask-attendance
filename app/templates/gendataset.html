@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> Training Model </title>
+    {% include "header.html" %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<section class="py-1" style="background-color: whitesmoke;">
+    <div class="row mt-5 justify-content-center align-items-center">
+        <div class="col-md-6 text-center">
+            <h1 style="font-size: 24px;">Generate Dataset {{ prs }}</h1>
+            <p> Please Don't click the "training button", please wait the capture image to count "100"</p>
+            <hr>
+            <img src="{{ url_for('face_temp.vidfeed_dataset', nbr=prs) }}" style="width: 50%; max-width: 50%;">
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-6 text-center">
+            <a class="btn btn-warning btn-lg" href="{{ url_for('face_temp.train_classifier', nbr=prs) }}">Training</a>
+        </div>
+    </div>
+</section>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</section>
+{% include "footer.html" %}
+</body>
+</html>

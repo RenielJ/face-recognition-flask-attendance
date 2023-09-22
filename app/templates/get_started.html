@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Guide! </title>
+  {% include "header.html" %}
+  
+  
+  <style>
+    .center-align{
+        text-align: center;       
+    }
+    #position{
+        margin-top: 20px ;
+        margin-bottom: 25px ;
+        margin-left: 30px ;
+        margin-right: 30px ;
+        padding: 20px;
+    }
+    .intro{
+        margin-top: 20px ;
+        margin-bottom: 25px ;
+        margin-left: 30px ;
+        margin-right: 30px ;
+        padding: 20px; 
+    }
+  </style>
+</head>
+<body>
+
+    {% include "navbar.html" %}
+  
+  <div class="container mt-4" id="position">
+    <h1 class="center-align">Face Recognition Attendance with Tracking Temperature Guide</h1>
+    <p class="intro">Welcome to the Face Recognition Attendance with Tracking Temperature Guide! In this tutorial, we will guide you through the process of implementing a face recognition system for attendance tracking.</p>
+
+    <!-- Registration Section -->
+    <section class="my-5">
+      <h2>Step 1: Registration</h2>
+      <p>Before we start, let's create a registration system for users to enroll their faces. In this section, we'll guide you through the process of capturing and storing facial images for recognition.</p>
+      <img src="{{ url_for('static', filename='img/step1.png') }}" width="600px">
+      <p>When you already go to the student data, click the "add student"</p>
+      <img src="{{ url_for('static', filename='img/step2.png') }}" width="600px">
+      <p> Make sure you fill up all the requirements needed</p>
+      <img src="{{ url_for('static', filename='img/step3.png') }}" width="600px">
+    </section>
+
+    <!-- Generating Image Section -->
+    <section class="my-5">
+      <h2>Step 2: Generating Image</h2>
+      <p>In this step, we'll generate an image to showcase the process of capturing an image for recognition purposes. We'll use this image for testing our face recognition system later.</p>
+      <p> When generating an image make sure wait the live video of camera to pop up and count "100"</p>
+      <img src="{{ url_for('static', filename='img/step4.png') }}" width="600px">
+      <img src="{{ url_for('static', filename='img/step5.png') }}" width="600px">
+      <p> When you click the training it will direct you to the student data and you will see the data you input.</p>
+      <img src="{{ url_for('static', filename='img/step6.png') }}" width="600px">
+      <p> You may also download it from excel</p>
+      <img src="{{ url_for('static', filename='img/step7.png') }}" width="600px">
+      <p>That's the all features of the student data!  </p>
+    </section>
+
+    <!-- Face Recognition Section -->
+    <section class="my-5">
+      <h2>Step 3: Face Recognition with Temperature</h2>
+      
+      <p>Now, let's dive into the heart of our tutorial - face recognition. Note that our face recognition has integrated of thermal sensor.</p>
+      <p> First of all, before you click the face recognition, make sure you open the bluetooth that will connect to "HC-05"</p>
+      <img src="{{ url_for('static', filename='img/step8.png') }}" width="600px">
+      <br><br>
+      <img src="{{ url_for('static', filename='img/step9.png') }}" width="600px">
+      <br><br><br>
+      <p> It will pop up again the live video stream from web camera, recognize generated image, and the data will pop up to today scan. You may download with excel file. </p>
+      <img src="{{ url_for('static', filename='img/step10.png') }}" width="250px">
+      <img src="{{ url_for('static', filename='img/step11.png') }}" width="225px">
+
+      <br> <br>
+      <img src="{{ url_for('static', filename='img/step12.png') }}" width="600px">
+      <img src="{{ url_for('static', filename='img/step13.png') }}" width="600px">
+      <br><br><br>
+      <img src="{{ url_for('static', filename='img/step14.png') }}" width="600px">
+      <!-- You can add more tutorial content and code examples here -->
+    </section>
+
+    <!-- Conclusion -->
+    <section class="my-5">
+      <h2>Conclusion</h2>
+      <p>Congratulations! You've completed the tutorial on implementing face recognition with Tracking Temperature. With the skills you've gained, you can now develop more advanced applications using facial recognition technology. 
+        thank you for using 
+      </p>
+      <!-- You can add final thoughts, resources, and additional content here -->
+    </section>
+  </div>
+
+  {% include "footer.html" %}
+
+
+</body>
+</html>
