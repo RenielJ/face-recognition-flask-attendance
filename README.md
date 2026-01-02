@@ -5,4 +5,6 @@
    * Test
    * Test
 3. Software Materials:
-*Note: It should have an Arduino port for temperature otherwise system wouldn't function.*
+   * Test
+   * Test
+\n *Note: It should have an Arduino port for temperature otherwise system wouldn't function.*
